@@ -6,11 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "netlify build"
   },
   "dependencies": {
+    "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.5"
-  }
+    "sass": "^1.89.2",
+    "sweetalert2": "^11.22.2",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@netlify/next": "^1.4.9"
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
