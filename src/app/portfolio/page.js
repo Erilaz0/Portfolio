@@ -73,11 +73,12 @@ export default function Portfolio(){
   {/* Contenido por encima */}
   <div style={{ position: "relative", zIndex: 2 }}>
     <div className="nav">
-     <button className="button_contact">Contactar
+     <button className="button_contact">
+      <p>Contactar</p>
       <img src="/brujula.png"></img>
      </button>
      <button className="button_about_me">
-      Sobre Mi
+      <p>Sobre Mi</p>
       <img src="/totem.png"></img>
      </button>
     </div>

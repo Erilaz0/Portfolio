@@ -33,6 +33,10 @@
                 height: 25px;
                 transform: translateX(7px) translateY(-5px);
             }
+            p{
+                height: 20px;
+                transform: translateY(-5px);
+            }
         }
         .button_about_me{
             width: 150px;
@@ -47,7 +51,11 @@
             img{
                 width: 25px;
                 height: 25px;
-                transform: translateX(10px) translateY(-8px);
+                transform: translateX(10px) translateY(-5px);
+            }
+            p{
+                height: 20px;
+                transform: translateY(-5px);
             }
         }
     }
