@@ -47,7 +47,7 @@
             img{
                 width: 25px;
                 height: 25px;
-                transform: translateX(10px) translateY(-5px);
+                transform: translateX(10px) translateY(-8px);
             }
         }
     }
@@ -164,9 +164,10 @@
         }
         
         .chests_cont{
+            margin-top: -20px;
             width: 100%;
             display: flex;
-            padding-bottom: 50px;
+            min-height: 200px;
             justify-content: center;
 
             .swiper{
