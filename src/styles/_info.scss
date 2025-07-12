@@ -104,7 +104,7 @@
     }
     .proyects{
         width: 100%;
-        margin-top: 100px;
+        margin-top: 30px;
         
         
         .title{
@@ -122,7 +122,7 @@
             }
         }
         .proyects_cont{
-            margin-top: 50px;
+            margin-top: 10px;
             .swiper{
                 max-width: 500px;
                 height: 200px;
@@ -166,6 +166,7 @@
         .chests_cont{
             width: 100%;
             display: flex;
+            padding-bottom: 50px;
             justify-content: center;
 
             .swiper{
@@ -264,7 +265,7 @@
         }
         .proyects{
             width: 100%;
-            margin-top: 100px;
+            margin-top: 50px;
             .title{
                 display: flex;
                 text-align: center;
