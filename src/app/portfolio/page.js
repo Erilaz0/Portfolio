@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "../../styles/_info.scss"
 import Proyects from "./proyetcs";
 import Stack from "./stack";
+import showDetails from "./details";
 
 
 export default function Portfolio(){
@@ -11,6 +12,10 @@ export default function Portfolio(){
    const text = "<Full Stack Developer/>"
 
    const [hasRun, setHasRun] = useState(false);
+
+   const redirect = ( path )=>{
+    window.location.href = path
+   }
 
  useEffect(() => {
   if (hasRun) return;
@@ -45,6 +50,27 @@ export default function Portfolio(){
        setCursor("/picaxe.png");
      }, 150);
    };
+
+
+   useEffect(() => {
+    const cvClick = () => {
+      const cv = document.getElementsByClassName("paper")[0];
+      if (cv) {
+        cv.addEventListener("click", () => {
+          window.open("/cv_alonso.pdf");
+        });
+      }
+    };
+    cvClick();
+  
+    // Opcional: limpiar listener al desmontar
+    return () => {
+      const cv = document.getElementsByClassName("paper")[0];
+      if (cv) cv.removeEventListener("click", () => window.open("/cv_alonso.pdf", "_blank"));
+    }
+  }, []);
+
+
     return(
 <div
   className="gl"
@@ -90,20 +116,20 @@ export default function Portfolio(){
       <p className="details"></p>
       <div className="icons">
         <div className="icon_cont">
-         <img className="icon" src="/esmerald.png"></img>
+         <img onClick={ ()=>{ redirect("https://www.linkedin.com/in/martín-alonso-b3560a266") } } className="icon" src="/esmerald.png"></img>
          <p>Linkedin</p>
         </div>
         <div className="icon_cont">
-         <img className="icon" src="/cat.png"></img>
+         <img onClick={ ()=>{ redirect("https://github.com/Erilaz0") } } className="icon" src="/cat.png"></img>
          <p>Github</p>
         </div>
         <div className="icon_cont">
-         <img className="icon" src="/star.png"></img>
-         <p>Logros</p>
+         <img onClick={ showDetails } className="icon" src="/star.png"></img>
+         <p onClick={ showDetails }>Logros</p>
         </div>
         <div className="icon_cont">
-         <img className="icon" src="/paper.png"></img>
-         <p>CV</p>
+         <img className="icon paper" src="/paper.png"></img>
+         <a href="/cv_alonso.pdf" download="cv_alonso.pdf">CV</a>
         </div>
       </div>
      </div>

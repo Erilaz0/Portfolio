@@ -9,22 +9,37 @@ import { useState } from "react";
 
 export default function Proyects(){
     const [ imageS , setImageS ] = useState("")
-
+    
+    const redirect = ( path )=>{
+        window.location.href = path
+       }
 
      const showProyect = ( event )=>{
         let title;
         let description;
+        let githubf;
+        let githubb;
+        let site;
         if( event.target.id === "/moto4k.jpg" ){
            title = "DMstore ( Ecommerce )",
            description = "DMstore es una tienda de insumos mecanicos con opcion de pagos variada utilizando la libreria de mercado pago."
+           githubf = "https://github.com/Erilaz0/dm_front.git"
+           githubb = "https://github.com/Erilaz0/dm_src.git"
+           site = "https://dmotos.netlify.app/"
         }
         else if( event.target.id === "/pinka.png" ){
            title = "ToniaInv ( App de Eventos )"
            description = "App de organización de eventos, recopila la información de los invitados a través de delicadas invitaciones web."
+           githubf = "https://github.com/Erilaz0/tonia_inv.git"
+           githubb = "https://github.com/Erilaz0/tonia_inv.git"
+           site = "https://tonia.netlify.app/"
         }
         else if( event.target.id === "/SiteStrike.png" ){
            title = "SiteStrike",
            description = "Herramienta en desarrollo que realiza ataques diccionario simples sobre una URL dada."
+           githubf = "https://github.com/Erilaz0/SiteStrike.git"
+           githubb = "https://github.com/Erilaz0/SiteStrike.git"
+           site = "https://github.com/Erilaz0/SiteStrike.git"
         }
         Swal.fire({
             html: `
@@ -32,18 +47,47 @@ export default function Proyects(){
              <img src=${ event.target.id } style="margin-top:70px; margin-left: 30px ;width: 200px; height: 150px" />
              <h1 style="text-align: start; font-size: 15px;margin-left: 30px ; margin-top: 10px">${ title }</h1> 
              <p style="width: 90%;margin-left:30px;font-size: 15px; text-align: start">${ description }</p>
-             <div style="display: flex; margin-top: 5px;">
-              <div style="margin-left: 20px; width: 80px; display: flex; aling-items: center; justify-content: center; flex-direction: column;">
-               <img class="icon_book" style="width:40px; height: 40px; margin-left: 20px" src="/cat.png"/>   
-               <p style="margin-top: 5px; text-align: center;font-size:15px">Github</p>
-              </div>    
-              <div style="margin-left: 5px; width: 80px; display: flex; aling-items: center; justify-content: center; flex-direction: column;">
-               <img style="width:40px; height: 40px; margin-left: 20px" src="/ender_eye.png"/>   
+             <div style="display: flex; margin-top: 15px;">
+              <div style="margin-left: 20px; max-width: 80px; display: flex; aling-items: center; justify-content: center; flex-direction: column;">
+               <img class="cat" class="icon_book" style="min-width:40px; width:40px; height: 40px" src="/cat.png"/>   
+               <p style="margin-top: 5px; text-align: center;font-size:15px">Front</p>
+              </div>  
+              <div style="margin-left: 20px; max-width: 80px; display: flex; aling-items: center; justify-content: center; flex-direction: column;">
+               <img class="cato" class="icon_book" style="min-width:40px; height: 40px" src="/cat_back.png"/>   
+               <p style="margin-top: 5px; text-aling: center;font-size:15px">Back</p>
+              </div>     
+              <div style="margin-left:20px;min-width:40px; max-width: 80px; display: flex; aling-items: center; justify-content: center; flex-direction: column;">
+               <img class="site" style="width:40px; height: 40px;" src="/ender_eye.png"/>   
                <p style="margin-top: 5px; text-align: center;font-size:15px">Sitio</p>
               </div>  
              </div>  
             </div>
           `
+          ,
+        showConfirmButton: true,
+        didOpen: () => {
+         const githubBtn = document.getElementsByClassName("cat")[0];
+         const githubBtnb = document.getElementsByClassName("cato")[0];
+         const siteBtn = document.getElementsByClassName("site")[0];
+
+         if (githubBtn ) {
+          githubBtn.addEventListener("click", () => {
+             window.open( githubf , "_blank") 
+         });
+        }
+
+        if (githubBtnb ) {
+            githubBtnb.addEventListener("click", () => {
+             window.open( githubb , "_blank") 
+           });
+          }
+
+        if (siteBtn) {
+         siteBtn.addEventListener("click", () => {
+          window.open(site, "_blank");
+         });
+        }
+       }
           })
      }
 
