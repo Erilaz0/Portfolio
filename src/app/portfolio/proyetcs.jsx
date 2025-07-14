@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Swal from 'sweetalert2';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Proyects(){
     const [ imageS , setImageS ] = useState("")
@@ -43,8 +43,9 @@ export default function Proyects(){
         }
         Swal.fire({
             html: `
-            <div class="swal" style="overflow: hidden; padding:20px; display: flex; flex-direction: column; justify-content: flex-start">
-             <img src=${ event.target.id } style="margin-top:70px; margin-left: 30px ;width: 200px; height: 150px" />
+          <div class="swal" style="overflow: hidden; padding:20px; display: flex; flex-direction: column; justify-content: flex-start">
+           <div style="min-height: 400px; display: flex; flex-direction: column; justify-content: flex-start"">
+            <img src=${ event.target.id } style="margin-top:70px; margin-left: 30px ;width: 200px; height: 150px" />
              <h1 style="text-align: start; font-size: 15px;margin-left: 30px ; margin-top: 10px">${ title }</h1> 
              <p style="width: 90%;margin-left:30px;font-size: 15px; text-align: start">${ description }</p>
              <div style="display: flex; margin-top: 15px;">
@@ -62,6 +63,7 @@ export default function Proyects(){
               </div>  
              </div>  
             </div>
+           </div>
           `
           ,
         showConfirmButton: true,
@@ -91,11 +93,57 @@ export default function Proyects(){
           })
      }
 
+           useEffect(() => {
+             setTimeout(() => {
+                 const observer = new IntersectionObserver(entries => {
+                     entries.forEach(entry => {
+                         if (entry.isIntersecting) {
+                             entry.target.classList.add("visible");
+                             observer.unobserve(entry.target); // Evita llamadas innecesarias
+                         }
+                     });
+                 });
+         
+                 const elements = document.querySelectorAll(".hidden");
+                 elements.forEach(elemento => observer.observe(elemento));
+         
+                 return () => observer.disconnect();
+             }, 200);
+         }, []);
+
+         const DM = "<div style='margin-left: 30px;display:flex; flex-direction: column; margin-top: 60px; align-items: flex-start;'><p> Javascript </p><p>CSS</p><p>HTML</p><p>TypeScript</p><p>MongoDB</p><p>sass</p><p>Reactjs</p></div>"
+         const Tonia = "<div style='margin-left: 30px;display:flex; flex-direction: column; margin-top: 60px; align-items: flex-start;'><p> Javascript </p><p>CSS</p><p>HTML</p><p>NEXTJS</p><p>MongoDB</p><p>sass</p><p>Reactjs</p></div>"
+         const SS = "<div style='margin-left: 30px;display:flex; flex-direction: column; margin-top: 60px; align-items: flex-start;'><p> Javascript </p></div>"
+
+         const DMSWAL = ()=>{
+            Swal.fire({
+                html: `
+                 ${ DM }
+                `
+              });
+         }
+
+         const TONIASWAL = ()=>{
+            Swal.fire({
+                html: `
+                 ${ Tonia }
+                `
+              });
+         }
+
+         const SSSWAL = ()=>{
+            Swal.fire({
+                html: `
+                 ${ SS }
+                `
+              });
+         }
+
     return(
         <div className="proyects">
          <div className="title">
-          <h1>Proyectos</h1>
-          <img src="/craft.png"></img>
+          <h1 className="hidden">Proyectos</h1>
+          <img className="hidden" src="/craft.png"></img>
          </div>
          <div className="proyects_cont">
          <Swiper
@@ -109,16 +157,19 @@ export default function Proyects(){
           }}
           >
            <SwiperSlide>
-            <img id="/moto4k.jpg" onClick={ showProyect } src="/book.gif"></img>
+            <img className="hidden" id="/moto4k.jpg" onClick={ showProyect } src="/book.gif"></img>
             <p>DMstore</p>
+            <p onClick={ DMSWAL } className="p2">Tecnologias</p>
            </SwiperSlide> 
            <SwiperSlide>
-            <img id="/pinka.png" onClick={ showProyect } src="/book.gif"></img>
+            <img className="hidden" id="/pinka.png" onClick={ showProyect } src="/book.gif"></img>
             <p>Tonia Inv</p>
+            <p onClick={ TONIASWAL} className="p2">Tecnologias</p>
            </SwiperSlide> 
            <SwiperSlide>
-            <img id="/SiteStrike.png"  onClick={ showProyect } src="/book.gif" ></img>
+            <img className="hidden" id="/SiteStrike.png"  onClick={ showProyect } src="/book.gif" ></img>
             <p>SiteStrike</p>
+            <p onClick={ SSSWAL } className="p2">Tecnologias</p>
            </SwiperSlide> 
           </Swiper>
          </div>

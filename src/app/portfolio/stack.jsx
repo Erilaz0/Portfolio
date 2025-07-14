@@ -4,14 +4,33 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useEffect } from "react";
 
 export default function Stack(){
+      useEffect(() => {
+        setTimeout(() => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target); // Evita llamadas innecesarias
+                    }
+                });
+            });
+    
+            const elements = document.querySelectorAll(".hidden");
+            elements.forEach(elemento => observer.observe(elemento));
+    
+            return () => observer.disconnect();
+        }, 200);
+    }, []); 
+    
 
     return(
         <div className="stack">
          <div className="title">
           <img className="azada" src="/azada.png"></img>
-          <h1>Stack</h1>
+          <h1 className="hidden">Stack</h1>
           <img src="/axe.png"></img>
          </div>
          <div className="chests_cont">
@@ -19,6 +38,7 @@ export default function Stack(){
                        modules={[Navigation, Pagination, Scrollbar , Autoplay]}
                        spaceBetween={0}
                        slidesPerView={3}
+                       className="hidden"
                        loop={ true }
                        autoplay={{
                        delay: 2000, // Tiempo en milisegundos entre cada cambio de slide (3 segundos)

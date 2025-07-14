@@ -5,17 +5,56 @@ import "../../styles/_info.scss"
 import Proyects from "./proyetcs";
 import Stack from "./stack";
 import showDetails from "./details";
+import sendEmail from "../handlers/send";
+import Swal from 'sweetalert2'
+import Me from "./me";
 
 
 export default function Portfolio(){
    const [cursor, setCursor] = useState("/picaxe.png"); // cursor normal
-   const text = "<Full Stack Developer/>"
-
+   const [ image  , setImage ] = useState("/avatar.png")
    const [hasRun, setHasRun] = useState(false);
 
    const redirect = ( path )=>{
     window.location.href = path
    }
+
+   const changueImage= ()=>{
+    if( image === "/avatar.png" ){
+      setImage("/moto4k.jpg") 
+    }
+    else{
+      setImage("/avatar.png")
+    }
+   }
+
+
+ 
+const showForm = () => {
+  Swal.fire({
+    html: `
+      <textarea style="margin-top:100px" id="message" class="swal2-textarea" placeholder="Tu mensaje" rows="4"></textarea>
+    `,
+    confirmButtonText: 'Enviar',
+    focusConfirm: false,
+    preConfirm: () => {
+      const message = document.getElementById('message').value;
+
+      if ( !message) {
+        Swal.showValidationMessage('Por favor, completa todos los campos');
+        return false;
+      }
+
+      // Podés devolver los datos para usarlos
+      return { message };
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const { message } = result.value;
+      sendEmail( message )
+    }
+  });
+};
 
  useEffect(() => {
   if (hasRun) return;
@@ -37,8 +76,12 @@ export default function Portfolio(){
   };
 
   typeWriter(
-    "Ofrezco mis conocimientos en programación y ciberseguridad para convertirme en un pilar importante de su equipo.",
-    "details"
+    "Martín Alonso",
+    "name"
+  );
+  typeWriter(
+    "<Full Stack Developer/>",
+    "position"
   );
 }, [hasRun]);
 
@@ -70,6 +113,24 @@ export default function Portfolio(){
     }
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target); // Evita llamadas innecesarias
+                }
+            });
+        });
+
+        const elements = document.querySelectorAll(".hidden");
+        elements.forEach(elemento => observer.observe(elemento));
+
+        return () => observer.disconnect();
+    }, 200);
+}, []); 
+
 
     return(
 <div
@@ -99,21 +160,24 @@ export default function Portfolio(){
   {/* Contenido por encima */}
   <div style={{ position: "relative", zIndex: 2 }}>
     <div className="nav">
-     <button className="button_contact">
+     <button onClick={ showForm } className="button_contact">
       <p>Contactar</p>
       <img src="/brujula.png"></img>
      </button>
-     <button className="button_about_me">
+     <button onClick={ Me } className="button_about_me">
       <p>Sobre Mi</p>
       <img src="/totem.png"></img>
      </button>
     </div>
     <div className="data_cont" style={ { display: "flex" } }>
-     <img className="avatar" style={ { filter: "brightness(80%)" } } src="/avatar.png" />
+     <div>
+      <img className="avatar" style={ {   transition: "transform 0.5s ease", filter: "brightness(80%)" } } src={ image } />
+      <img onClick={ changueImage } style={ { transform: "translateX(-140px) translateY(-30px)", width: "30px" , height: "30px" } } src="/exit_icon.png"/>
+     </div>
      <div className="info">
-      <h1>Martín Alonso</h1>
-      <h2>{ text }</h2>
-      <p className="details"></p>
+      <h1 className="name"></h1>
+      <h2 className="position"></h2>
+      <p className="details">Ofrezco mis conocimientos en programación y ciberseguridad para convertirme en un pilar importante de su equipo.</p>
       <div className="icons">
         <div className="icon_cont">
          <img onClick={ ()=>{ redirect("https://www.linkedin.com/in/martín-alonso-b3560a266") } } className="icon" src="/esmerald.png"></img>
