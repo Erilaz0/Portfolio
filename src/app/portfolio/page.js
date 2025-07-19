@@ -19,21 +19,13 @@ export default function Portfolio(){
     window.location.href = path
    }
 
-   const changueImage= ()=>{
-    if( image === "/avatar.png" ){
-      setImage("/moto4k.jpg") 
-    }
-    else{
-      setImage("/avatar.png")
-    }
-   }
-
-
  
 const showForm = () => {
   Swal.fire({
     html: `
-      <textarea style="margin-top:100px" id="message" class="swal2-textarea" placeholder="Tu mensaje" rows="4"></textarea>
+     <div style="display: flex, justify-content: center, align-items: center">
+      <textarea style="margin: 0,margin-top:100px" id="message" class="swal2-textarea" placeholder="Tu mensaje"></textarea>
+     </div>
     `,
     confirmButtonText: 'Enviar',
     focusConfirm: false,
@@ -172,7 +164,6 @@ const showForm = () => {
     <div className="data_cont" style={ { display: "flex" } }>
      <div>
       <img className="avatar" style={ {   transition: "transform 0.5s ease", filter: "brightness(80%)" } } src={ image } />
-      <img onClick={ changueImage } style={ { transform: "translateX(-140px) translateY(-30px)", width: "30px" , height: "30px" } } src="/exit_icon.png"/>
      </div>
      <div className="info">
       <h1 className="name"></h1>
@@ -193,7 +184,7 @@ const showForm = () => {
         </div>
         <div className="icon_cont">
          <img className="icon paper" src="/paper.png"></img>
-         <a href="/cv_alonso.pdf" download="cv_alonso.pdf">CV</a>
+         <a href="/cv.pdf" download="cv.pdf">CV</a>
         </div>
       </div>
      </div>

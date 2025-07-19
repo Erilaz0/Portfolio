@@ -22,7 +22,7 @@ export default function Proyects(){
         let site;
         if( event.target.id === "/moto4k.jpg" ){
            title = "DMstore ( Ecommerce )",
-           description = "DMstore es una tienda de insumos mecanicos con opcion de pagos variada utilizando la libreria de mercado pago."
+           description = "DMstore es una tienda de insumos mecanicos con opcion de pagos variada utilizando la libreria de mercado pago. ( delay de 50 segundos en primera request debido a el uso de hosting no pago )"
            githubf = "https://github.com/Erilaz0/dm_front.git"
            githubb = "https://github.com/Erilaz0/dm_src.git"
            site = "https://dmotos.netlify.app/"
@@ -158,18 +158,18 @@ export default function Proyects(){
           >
            <SwiperSlide>
             <img className="hidden" id="/moto4k.jpg" onClick={ showProyect } src="/book.gif"></img>
-            <p>DMstore</p>
-            <p onClick={ DMSWAL } className="p2">Tecnologias</p>
+            <p onClick={ DMSWAL } >DMstore</p>
+            <p onClick={ DMSWAL } className="p2">Stack</p>
            </SwiperSlide> 
            <SwiperSlide>
             <img className="hidden" id="/pinka.png" onClick={ showProyect } src="/book.gif"></img>
-            <p>Tonia Inv</p>
-            <p onClick={ TONIASWAL} className="p2">Tecnologias</p>
+            <p onClick={ TONIASWAL}>Tonia Inv</p>
+            <p onClick={ TONIASWAL} className="p2">Stack</p>
            </SwiperSlide> 
            <SwiperSlide>
             <img className="hidden" id="/SiteStrike.png"  onClick={ showProyect } src="/book.gif" ></img>
-            <p>SiteStrike</p>
-            <p onClick={ SSSWAL } className="p2">Tecnologias</p>
+            <p onClick={ SSSWAL }>SiteStrike</p>
+            <p onClick={ SSSWAL } className="p2">Stack</p>
            </SwiperSlide> 
           </Swiper>
          </div>
