@@ -32,6 +32,7 @@ export async function POST( req ){
         return Response.json({ success: true, message: "Correo enviado con éxito." });
     
       } catch (error) {
+        console.log( error )
         return Response.json({ success: false, message: "Error al enviar correo." }, { status: 500 });
       }
 }
