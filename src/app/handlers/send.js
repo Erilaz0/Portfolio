@@ -5,7 +5,7 @@ export default async function sendEmail( message ){
     const msg = {
         message : message
     }
-    const request = await fetch("https://macv.vercel.app/portfolio",{
+    const request = await fetch("https://macv.vercel.app/api",{
         method: "POST",
         body: JSON.stringify( msg )
     })
