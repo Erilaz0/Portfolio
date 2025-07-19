@@ -4,6 +4,8 @@ export async function POST( req ){
 
     try {
         const { message } = await req.json();
+        console.log( process.env.EMAIL_PASS )
+        console.log( process.env.EMAIL_USER )
     
         // Configura el transporte con tus credenciales SMTP (por ejemplo, Gmail, Mailtrap, etc.)
         const transporter = nodemailer.createTransport({
